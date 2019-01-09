@@ -1540,11 +1540,6 @@ typedef struct AlterTableCmd	/* one subcommand of an ALTER TABLE */
 	bool		part_expanded;	/* expands from another command, for partitioning */
 	List	   *partoids;		/* If applicable, OIDs of partition part tables */
 	bool		missing_ok;		/* skip error if missing? */
-	/* addition info for partition table */
-	Bitmapset	*ps_none;
-	Bitmapset	*ps_root;
-	Bitmapset	*ps_interior;
-	Bitmapset	*ps_leaf;
 } AlterTableCmd;
 
 
@@ -2110,19 +2105,9 @@ typedef struct PartitionSpec			/* a Partition Specification */
 	int					location;		/* token location, or -1 if unknown */
 } PartitionSpec;
 
-typedef enum ExpandMethod
-{
-	EXPANDMETHOD_NONE = 0,
-	EXPANDMETHOD_CTAS,
-	EXPANDMETHOD_RESHUFFLE
-} ExpandMethod;
-
 typedef struct ExpandStmtSpec
 {
 	NodeTag				type;
-	/* method to move data internal */
-	ExpandMethod		method;
-
 	/* for ctas method */
 	Oid					backendId;
 } ExpandStmtSpec;

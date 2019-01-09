@@ -2934,6 +2934,7 @@ alter_table_cmd:
 				{
 					AlterTableCmd *n = makeNode(AlterTableCmd);
 					n->subtype = AT_ExpandTable;
+					n->def = (Node *)makeNode(ExpandStmtSpec);
 					$$ = (Node *)n;
 				}
 			/* ALTER TABLE <name> OF <type_name> */

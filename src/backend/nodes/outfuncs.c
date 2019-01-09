@@ -3092,7 +3092,6 @@ static void
 _outExpandStmtSpec(StringInfo str, const ExpandStmtSpec *node)
 {
 	WRITE_NODE_TYPE("EXPANDSTMTSPEC");
-	WRITE_ENUM_FIELD(method, ExpandMethod);
 	WRITE_OID_FIELD(backendId);
 }
 
